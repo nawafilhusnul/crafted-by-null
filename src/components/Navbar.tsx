@@ -1,6 +1,8 @@
 import { useState, useEffect, FC } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { useTheme } from "../context/ThemeContext";
 
 interface NavLink {
   name: string;
@@ -10,6 +12,7 @@ interface NavLink {
 const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   const navItems: NavLink[] = [
     { name: "Home", href: "#home" },
@@ -29,58 +32,76 @@ const Navbar: FC = () => {
   }, []);
 
   const navbarClasses = `fixed w-full z-50 transition-all duration-300 ${
-    isScrolled ? "bg-gray-900/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
+    isScrolled
+      ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg"
+      : "bg-transparent"
   }`;
 
   const menuVariants = {
-    closed: {
-      opacity: 0,
-      x: "100%",
-      transition: {
-        duration: 0.2,
-      },
-    },
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.2,
-      },
-    },
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: -20 },
   };
 
   return (
     <nav className={navbarClasses}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-xl font-bold text-white"
+          {/* Logo */}
+          <motion.a
+            href="#home"
+            className="text-2xl font-bold font-mono bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent hover:from-purple-500 hover:to-blue-500 transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Husnul Nawafil
-          </motion.div>
+            nullvibes.my.id
+          </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-gray-300 hover:text-white transition-colors duration-200"
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {item.name}
               </motion.a>
             ))}
+
+            {/* Theme Toggle Button */}
+            <motion.button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {isDark ? (
+                <SunIcon className="w-5 h-5 text-yellow-500" />
+              ) : (
+                <MoonIcon className="w-5 h-5 text-gray-700" />
+              )}
+            </motion.button>
           </div>
 
           {/* Mobile Navigation Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-4">
+            <motion.button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {isDark ? (
+                <SunIcon className="w-5 h-5 text-yellow-500" />
+              ) : (
+                <MoonIcon className="w-5 h-5 text-gray-700" />
+              )}
+            </motion.button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white p-2"
+              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white p-2"
             >
               {isOpen ? (
                 <XMarkIcon width={24} height={24} />
@@ -100,16 +121,16 @@ const Navbar: FC = () => {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="md:hidden bg-gray-800 shadow-lg"
+            className="md:hidden bg-white dark:bg-gray-800 shadow-lg"
           >
             <div className="px-4 pt-2 pb-4 space-y-2">
               {navItems.map((item) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="block text-gray-300 hover:text-white p-2 rounded transition-colors duration-200"
-                  whileHover={{ x: 4 }}
-                  onClick={() => setIsOpen(false)}
+                  className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {item.name}
                 </motion.a>
