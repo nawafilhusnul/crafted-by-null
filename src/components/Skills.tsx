@@ -1,7 +1,16 @@
 import { motion } from "framer-motion";
-import { FaAws, FaServer, FaDocker, FaPython } from "react-icons/fa";
 import {
-  SiKubernetes,
+  FaAws,
+  FaServer,
+  FaDocker,
+  FaPython,
+  FaCode,
+  FaBrain,
+  FaUsers,
+  FaCogs,
+  FaVial,
+} from "react-icons/fa";
+import {
   SiPostgresql,
   SiRedis,
   SiGo,
@@ -9,42 +18,48 @@ import {
   SiGooglecloud,
   SiFirebase,
   SiAmazondynamodb,
+  SiNodedotjs,
 } from "react-icons/si";
-import { FC } from 'react';
-import { SkillCategory } from '../types';
+import { FC } from "react";
+import { SkillCategory } from "../types";
 
 const Skills: FC = () => {
   const skills: SkillCategory[] = [
     {
       category: "Programming Languages & Backend",
       items: [
-        { name: "Go", icon: SiGo, level: 90 },
-        { name: "Python", icon: FaPython, level: 85 },
-        { name: "Clean Architecture", icon: FaServer, level: 88 },
+        { name: "Go", icon: SiGo, level: 95 },
+        { name: "Node.js", icon: SiNodedotjs, level: 85 },
+        { name: "Python", icon: FaPython, level: 70 },
       ],
     },
     {
       category: "Databases",
       items: [
+        { name: "MySQL", icon: SiMysql, level: 95 },
         { name: "PostgreSQL", icon: SiPostgresql, level: 85 },
-        { name: "MySQL", icon: SiMysql, level: 85 },
+        { name: "DynamoDB", icon: SiAmazondynamodb, level: 85 },
+        { name: "Firestore", icon: SiFirebase, level: 85 },
         { name: "Redis", icon: SiRedis, level: 80 },
       ],
     },
     {
       category: "Cloud & Infrastructure",
       items: [
-        { name: "AWS", icon: FaAws, level: 85 },
-        { name: "GCP", icon: SiGooglecloud, level: 80 },
-        { name: "Docker", icon: FaDocker, level: 85 },
+        { name: "Docker", icon: FaDocker, level: 80 },
+        { name: "GCP", icon: SiGooglecloud, level: 75 },
+        { name: "AWS", icon: FaAws, level: 70 },
       ],
     },
     {
-      category: "Other Technologies",
+      category: "Others",
       items: [
-        { name: "DynamoDB", icon: SiAmazondynamodb, level: 80 },
-        { name: "Firestore", icon: SiFirebase, level: 80 },
-        { name: "Kubernetes", icon: SiKubernetes, level: 75 },
+        { name: "Team Work", icon: FaUsers, level: 95 },
+        { name: "Agile Development", icon: FaCogs, level: 95 },
+        { name: "Unit Testing", icon: FaVial, level: 90 },
+        { name: "Clean Architecture", icon: FaServer, level: 80 },
+        { name: "Data Structure and Algorithm", icon: FaBrain, level: 80 },
+        { name: "System Design", icon: FaCode, level: 75 },
       ],
     },
   ];
