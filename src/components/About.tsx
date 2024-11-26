@@ -24,12 +24,12 @@ const About: FC = () => {
         {
           title: "Bachelor of Ocean Engineering",
           place: "Bandung Institute of Technology",
-          date: "Aug 2017 - Oct 2024",
+          date: "2017",
         },
         {
           title: "Backend Engineering",
           place: "Alterra Academy (Coding Bootcamp)",
-          date: "Feb 2022 - May 2022",
+          date: "2022",
         },
       ],
     },
