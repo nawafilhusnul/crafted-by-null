@@ -78,7 +78,7 @@ const Projects: FC = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="section-title">Featured Projects</h2>
+          <h2 className="section-title text-gray-800">Featured Projects</h2>
           <p className="text-lg text-gray-300 mt-4">
             Here are some of my recent projects that showcase my technical
             skills and problem-solving abilities.

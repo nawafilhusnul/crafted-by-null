@@ -82,7 +82,9 @@ const About: FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-title text-center mb-12">About Me</h2>
+          <h2 className="section-title text-center mb-12 text-gray-800">
+            About Me
+          </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             {experiences.map((section, idx) => (
