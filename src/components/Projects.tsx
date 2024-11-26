@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FC } from 'react';
+import { FC } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { Project } from "../types";
 
@@ -7,46 +7,65 @@ const Projects: FC = () => {
   const projects: Project[] = [
     {
       title: "FIT HUB Gym Management System",
-      description: "A comprehensive gym management system with features for class scheduling, membership management, and workout tracking.",
+      description:
+        "A comprehensive gym management system with features for class scheduling, membership management, and workout tracking.",
       image: "/images/projects/fithub.png",
-      technologies: ["Go", "PostgreSQL", "Redis", "Docker", "AWS"],
-      githubUrl: "https://github.com/nawafilhusnul/fithub-api",
+      technologies: [
+        "Go",
+        "MySQL",
+        "Redis",
+        "Firestore",
+        "AWS DynamoDB",
+        "Google Pub/Sub",
+        "Github",
+      ],
+      githubUrl: "https://fithub.id",
       features: [
         "API rate limiting for OTP optimization",
         "Class scheduling system",
         "Lead management system",
         "JWT authentication",
-        "RDBMS implementation"
-      ]
+        "RDBMS implementation",
+      ],
     },
     {
       title: "Financial Application",
-      description: "A scalable financial application built for TainoSystems Inc., featuring high-performance API endpoints and secure transaction processing.",
+      description:
+        "A scalable financial application built for TainoSystems Inc., featuring high-performance API endpoints and secure transaction processing.",
       image: "/images/projects/finance.png",
-      technologies: ["Go", "AWS", "DynamoDB", "Docker", "Kubernetes"],
-      githubUrl: "https://github.com/nawafilhusnul/finance-api",
+      technologies: ["Go", "Linux", "PostgreSQL", "Git"],
+      githubUrl: "https://tainosystems.com/",
       features: [
         "Concurrent processing with Go routines",
         "Microservices architecture",
         "Real-time transaction processing",
         "Scalable infrastructure",
-        "Comprehensive API documentation"
-      ]
+        "Comprehensive API documentation",
+      ],
     },
     {
       title: "HumaHire Recruitment Platform",
-      description: "A recruitment platform with integrated authentication and notification systems, optimized for high performance.",
+      description:
+        "A recruitment platform with integrated authentication and notification systems, optimized for high performance.",
       image: "/images/projects/humahire.png",
-      technologies: ["Go", "Firebase", "AWS SES", "Redis"],
-      githubUrl: "https://github.com/nawafilhusnul/humahire-api",
+      technologies: [
+        "Go",
+        "PostgreSQL",
+        "Firebase",
+        "AWS SES",
+        "Redis",
+        "Docker",
+        "Github Actions",
+      ],
+      githubUrl: "https://www.humahire.com/",
       features: [
         "Firebase Authentication integration",
         "Email delivery system with AWS SES",
         "Push notification system",
         "RESTful API optimization",
-        "Concurrent programming implementation"
-      ]
-    }
+        "Concurrent programming implementation",
+      ],
+    },
   ];
 
   return (
@@ -61,7 +80,8 @@ const Projects: FC = () => {
         >
           <h2 className="section-title">Featured Projects</h2>
           <p className="text-lg text-gray-300 mt-4">
-            Here are some of my recent projects that showcase my technical skills and problem-solving abilities.
+            Here are some of my recent projects that showcase my technical
+            skills and problem-solving abilities.
           </p>
         </motion.div>
 
