@@ -39,34 +39,32 @@ const About: FC = () => {
       items: [
         {
           title: "Backend Engineer",
-          place: "FIT HUB - Jakarta, Indonesia",
-          date: "Jul 2022 - present",
+          place: "TainoSystems Inc.",
+          date: "2023 - Present",
           achievements: [
-            "Reduced OTP costs by 30% through API rate limiting implementation",
-            "Decreased bugs by 99% in class schedules feature",
-            "Increased monthly active users by 30%",
-            "Improved data consistency through RDBMS restructuring",
-            "Enhanced security with JWT implementation",
+            "Developed and maintained high-performance APIs",
+            "Implemented microservices architecture",
+            "Optimized database queries and performance",
           ],
         },
         {
-          title: "Backend Developer (Freelance)",
-          place: "TainoSystems Inc. - Canada (Remote)",
-          date: "Jan 2024 - present",
+          title: "Backend Engineer",
+          place: "HumaHire",
+          date: "2022 - 2023",
           achievements: [
-            "Enhanced API performance by 40% using Go routines",
-            "Developed financial application from inception to deployment",
-            "Collaborated with global team across time zones",
+            "Built recruitment platform backend services",
+            "Integrated third-party APIs and services",
+            "Implemented authentication and notification systems",
           ],
         },
         {
-          title: "Backend Developer (Freelance)",
-          place: "HumaHire - Malaysia (Remote)",
-          date: "May 2023 - Aug 2023",
+          title: "Backend Engineer",
+          place: "FIT HUB",
+          date: "2022",
           achievements: [
-            "Reduced API response time by 25%",
-            "Improved email delivery success rate by 50%",
-            "Increased notification click-through rates by 30%",
+            "Developed gym management system backend",
+            "Implemented scheduling and booking features",
+            "Optimized API performance and security",
           ],
         },
       ],
@@ -90,41 +88,52 @@ const About: FC = () => {
           </p>
         </motion.div>
 
-        {experiences.map((section, _) => (
-          <div key={section.title} className="mb-12">
-            <div className="flex items-center mb-6">
-              <section.icon className="w-8 h-8 text-indigo-600 dark:text-indigo-400 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                {section.title}
-              </h3>
-            </div>
-            <div className="space-y-6">
-              {section.items.map((item, itemIdx) => (
-                <motion.div
-                  key={itemIdx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: itemIdx * 0.1 }}
-                  className="border-l-2 border-blue-500 pl-4"
-                >
-                  <h4 className="text-lg font-medium text-white">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-400">{item.place}</p>
-                  <p className="text-sm text-gray-500 mb-2">{item.date}</p>
-                  {item.achievements && (
-                    <ul className="list-disc list-inside text-sm text-gray-400 space-y-1">
-                      {item.achievements.map((achievement, achIdx) => (
-                        <li key={achIdx}>{achievement}</li>
-                      ))}
-                    </ul>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        ))}
+        <div className="grid md:grid-cols-2 gap-8">
+          {experiences.map((section, index) => (
+            <motion.div
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
+            >
+              <div className="flex items-center mb-6">
+                <section.icon className="w-8 h-8 text-indigo-600 dark:text-indigo-400 mr-3" />
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {section.title}
+                </h3>
+              </div>
+              <div className="space-y-6">
+                {section.items.map((item, itemIdx) => (
+                  <motion.div
+                    key={itemIdx}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: itemIdx * 0.1 }}
+                    className="border-l-2 border-indigo-500 pl-4"
+                  >
+                    <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
+                      {item.title}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {item.place}
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                      {item.date}
+                    </p>
+                    {item.achievements && (
+                      <ul className="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                        {item.achievements.map((achievement, achIdx) => (
+                          <li key={achIdx}>{achievement}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

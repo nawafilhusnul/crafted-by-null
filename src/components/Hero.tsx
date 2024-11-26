@@ -21,10 +21,12 @@ const Hero: FC = () => {
             Backend Engineer
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mb-8">
-            Passionate Backend Engineer with expertise in Go and cloud
-            technologies. Experienced in building scalable systems and
-            optimizing application performance. Currently based in Jakarta,
-            Indonesia.
+            An Ocean Engineer turned cloud-obsessed backend engineer with a
+            passion for building fast and scalable systems. Yes, you read that
+            right, a civil engineer who loves to code more than designing shore
+            protection structures. When I'm not coding, you can find me
+            exploring the outdoors or playing games. Currently based in Jakarta,
+            Indonesia, but always up for a remote adventure!
           </p>
 
           <div className="flex justify-center space-x-4 mb-12">
