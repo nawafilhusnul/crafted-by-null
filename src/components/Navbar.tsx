@@ -33,8 +33,8 @@ const Navbar: FC = () => {
 
   const navbarClasses = `fixed w-full z-50 transition-all duration-300 ${
     isScrolled
-      ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg"
-      : "bg-transparent"
+      ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg"
+      : "bg-gray-50/80 dark:bg-transparent backdrop-blur-sm"
   }`;
 
   const menuVariants = {
@@ -49,7 +49,7 @@ const Navbar: FC = () => {
           {/* Logo */}
           <motion.a
             href="#home"
-            className="text-2xl font-bold font-mono bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent hover:from-purple-500 hover:to-blue-500 transition-all duration-300"
+            className="text-2xl font-bold font-mono bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 bg-clip-text text-transparent hover:from-purple-600 hover:to-indigo-600 dark:hover:from-purple-500 dark:hover:to-blue-500 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -62,7 +62,7 @@ const Navbar: FC = () => {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+                className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white font-medium transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -73,14 +73,14 @@ const Navbar: FC = () => {
             {/* Theme Toggle Button */}
             <motion.button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-300"
+              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               {isDark ? (
                 <SunIcon className="w-5 h-5 text-yellow-500" />
               ) : (
-                <MoonIcon className="w-5 h-5 text-gray-700" />
+                <MoonIcon className="w-5 h-5 text-indigo-600" />
               )}
             </motion.button>
           </div>
@@ -89,19 +89,19 @@ const Navbar: FC = () => {
           <div className="md:hidden flex items-center space-x-4">
             <motion.button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-300"
+              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               {isDark ? (
                 <SunIcon className="w-5 h-5 text-yellow-500" />
               ) : (
-                <MoonIcon className="w-5 h-5 text-gray-700" />
+                <MoonIcon className="w-5 h-5 text-indigo-600" />
               )}
             </motion.button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white p-2"
+              className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white p-2"
             >
               {isOpen ? (
                 <XMarkIcon width={24} height={24} />
@@ -121,14 +121,14 @@ const Navbar: FC = () => {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="md:hidden bg-white dark:bg-gray-800 shadow-lg"
+            className="md:hidden bg-white dark:bg-gray-800 shadow-lg border-t border-gray-100 dark:border-gray-700"
           >
             <div className="px-4 pt-2 pb-4 space-y-2">
               {navItems.map((item) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+                  className="block text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white font-medium transition-colors duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

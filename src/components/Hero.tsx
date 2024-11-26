@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaMedium } from "react-icons/fa";
-import { FC } from 'react';
+import { FC } from "react";
 
 const Hero: FC = () => {
   return (
@@ -14,13 +14,13 @@ const Hero: FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
             {`Hi, I'm Husnul Nawafil`}
           </h1>
-          <h2 className="text-xl sm:text-2xl md:text-3xl text-blue-400 mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl text-indigo-600 dark:text-indigo-400 font-semibold mb-6">
             Backend Engineer
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mb-8">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mb-8">
             Passionate Backend Engineer with expertise in Go and cloud
             technologies. Experienced in building scalable systems and
             optimizing application performance. Currently based in Jakarta,
@@ -32,7 +32,7 @@ const Hero: FC = () => {
               href="https://github.com/nawafilhusnul"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
+              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -42,17 +42,17 @@ const Hero: FC = () => {
               href="https://linkedin.com/in/husnulnawafil"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
+              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               <FaLinkedin className="w-8 h-8" />
             </motion.a>
             <motion.a
-              href="https://medium.com/@nawafil"
+              href="https://medium.com/@husnulnawafil"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
+              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -60,14 +60,29 @@ const Hero: FC = () => {
             </motion.a>
           </div>
 
-          <motion.a
-            href="mailto:nawafilhusnul@gmail.com"
-            className="btn-primary inline-block"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
           >
-            Get in Touch
-          </motion.a>
+            <motion.a
+              href="#contact"
+              className="px-8 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get in Touch
+            </motion.a>
+            <motion.a
+              href="#projects"
+              className="px-8 py-3 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              View Projects
+            </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>
