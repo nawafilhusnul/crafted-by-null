@@ -78,52 +78,53 @@ const About: FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <h2 className="section-title text-center mb-12 text-gray-800">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             About Me
           </h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {experiences.map((section, idx) => (
-              <div key={idx} className="card">
-                <div className="flex items-center mb-6">
-                  <section.icon className="w-6 h-6 text-blue-500 mr-3" />
-                  <h3 className="text-xl font-semibold text-white">
-                    {section.title}
-                  </h3>
-                </div>
-                <div className="space-y-6">
-                  {section.items.map((item, itemIdx) => (
-                    <motion.div
-                      key={itemIdx}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: itemIdx * 0.1 }}
-                      className="border-l-2 border-blue-500 pl-4"
-                    >
-                      <h4 className="text-lg font-medium text-white">
-                        {item.title}
-                      </h4>
-                      <p className="text-gray-400">{item.place}</p>
-                      <p className="text-sm text-gray-500 mb-2">{item.date}</p>
-                      {item.achievements && (
-                        <ul className="list-disc list-inside text-sm text-gray-400 space-y-1">
-                          {item.achievements.map((achievement, achIdx) => (
-                            <li key={achIdx}>{achievement}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            My journey from Ocean Engineering to Backend Development
+          </p>
         </motion.div>
+
+        {experiences.map((section, _) => (
+          <div key={section.title} className="mb-12">
+            <div className="flex items-center mb-6">
+              <section.icon className="w-8 h-8 text-indigo-600 dark:text-indigo-400 mr-3" />
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                {section.title}
+              </h3>
+            </div>
+            <div className="space-y-6">
+              {section.items.map((item, itemIdx) => (
+                <motion.div
+                  key={itemIdx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: itemIdx * 0.1 }}
+                  className="border-l-2 border-blue-500 pl-4"
+                >
+                  <h4 className="text-lg font-medium text-white">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-400">{item.place}</p>
+                  <p className="text-sm text-gray-500 mb-2">{item.date}</p>
+                  {item.achievements && (
+                    <ul className="list-disc list-inside text-sm text-gray-400 space-y-1">
+                      {item.achievements.map((achievement, achIdx) => (
+                        <li key={achIdx}>{achievement}</li>
+                      ))}
+                    </ul>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
