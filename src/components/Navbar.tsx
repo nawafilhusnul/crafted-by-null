@@ -2,6 +2,7 @@ import { useState, useEffect, FC } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { FaGithub } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 interface NavLink {
@@ -47,14 +48,14 @@ const Navbar: FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.a
-            href="#home"
-            className="text-2xl font-bold font-mono bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 bg-clip-text text-transparent hover:from-purple-600 hover:to-indigo-600 dark:hover:from-purple-500 dark:hover:to-blue-500 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            nullvibes.my.id
-          </motion.a>
+          <div className="flex-shrink-0">
+            <a
+              href="#home"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:opacity-80 transition-opacity duration-300"
+            >
+              nullvibes.my.id
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -69,7 +70,17 @@ const Navbar: FC = () => {
                 {item.name}
               </motion.a>
             ))}
-
+            <motion.a
+              href="https://github.com/nawafilhusnul/crafted-by-null"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1 text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white font-medium transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaGithub className="w-5 h-5" />
+              <span>Source</span>
+            </motion.a>
             {/* Theme Toggle Button */}
             <motion.button
               onClick={toggleTheme}
@@ -135,6 +146,17 @@ const Navbar: FC = () => {
                   {item.name}
                 </motion.a>
               ))}
+              <motion.a
+                href="https://github.com/nawafilhusnul/personal-website"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white font-medium transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaGithub className="w-5 h-5" />
+                <span>View Source</span>
+              </motion.a>
             </div>
           </motion.div>
         )}
