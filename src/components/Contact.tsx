@@ -14,7 +14,7 @@ const Contact = () => {
     {
       name: "LinkedIn",
       icon: FaLinkedin,
-      url: "https://www.linkedin.com/in/husnul-nawafil",
+      url: "https://www.linkedin.com/in/husnulnawafil",
       color: "hover:text-blue-600 dark:hover:text-blue-400",
       hoverBg: "hover:bg-blue-50 dark:hover:bg-blue-900/20",
       description: "Connect with me professionally",
@@ -22,7 +22,7 @@ const Contact = () => {
     {
       name: "Email",
       icon: FaEnvelope,
-      url: "mailto:husnulnawafil@gmail.com",
+      url: "mailto:nawafilhusnul@gmail.com",
       color: "hover:text-red-600 dark:hover:text-red-400",
       hoverBg: "hover:bg-red-50 dark:hover:bg-red-900/20",
       description: "Drop me a message",
