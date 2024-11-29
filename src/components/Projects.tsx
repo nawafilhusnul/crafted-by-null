@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { FC } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { Project } from "../types";
+import ImageCarousel from "./ImageCarousel";
 
 const Projects: FC = () => {
   const projects: Project[] = [
@@ -9,7 +10,11 @@ const Projects: FC = () => {
       title: "FIT HUB Gym Management System",
       description:
         "A comprehensive gym management system with features for class scheduling, membership management, and workout tracking.",
-      image: "/images/projects/fithub.png",
+      images: [
+        "/images/projects/fithub.png",
+        "/images/projects/fithub-2.png",
+        "/images/projects/fithub-3.png",
+      ],
       technologies: [
         "Go",
         "MySQL",
@@ -32,7 +37,11 @@ const Projects: FC = () => {
       title: "Financial Application",
       description:
         "A scalable financial application built for TainoSystems Inc., featuring high-performance API endpoints and secure transaction processing.",
-      image: "/images/projects/finance.png",
+      images: [
+        "/images/projects/finance.png",
+        "/images/projects/finance-2.png",
+        "/images/projects/finance-3.png",
+      ],
       technologies: ["Go", "Linux", "PostgreSQL", "Git"],
       githubUrl: "https://tainosystems.com/",
       features: [
@@ -47,7 +56,11 @@ const Projects: FC = () => {
       title: "HumaHire Recruitment Platform",
       description:
         "A recruitment platform with integrated authentication and notification systems, optimized for high performance.",
-      image: "/images/projects/humahire.png",
+      images: [
+        "/images/projects/humahire.png",
+        "/images/projects/humahire-2.png",
+        "/images/projects/humahire-3.png",
+      ],
       technologies: [
         "Go",
         "PostgreSQL",
@@ -94,58 +107,73 @@ const Projects: FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="card overflow-hidden group"
+              className="card overflow-hidden group bg-white dark:bg-gray-800/50 rounded-xl shadow-sm dark:shadow-none transform hover:scale-[1.02] transition-all duration-300 ring-1 ring-gray-200 dark:ring-gray-800"
             >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-200"
+              <div className="relative overflow-hidden rounded-t-xl">
+                <ImageCarousel
+                  images={project.images}
+                  title={project.title}
+                  autoPlayInterval={4000}
                 />
-                <div className="absolute top-0 left-0 w-full h-full bg-gray-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center space-x-4">
+                <div
+                  className="absolute inset-0 bg-gray-900/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center space-x-4 pointer-events-none"
+                  style={{ zIndex: 40 }}
+                >
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-blue-400 transition-colors"
+                    className="text-white hover:text-blue-400 transition-colors pointer-events-auto p-2 hover:bg-white/10 rounded-full"
                   >
-                    <FaGithub className="w-8 h-8" />
+                    <FaGithub className="w-7 h-7" />
                   </a>
                   {project.liveUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-blue-400 transition-colors"
+                      className="text-white hover:text-blue-400 transition-colors pointer-events-auto p-2 hover:bg-white/10 rounded-full"
                     >
-                      <FaExternalLinkAlt className="w-7 h-7" />
+                      <FaExternalLinkAlt className="w-6 h-6" />
                     </a>
                   )}
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-2">
+              <div className="p-4">
+                <h3 className="text-lg font-semibold dark:text-white text-gray-900 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
                   {project.title}
                 </h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
+                <p className="mt-2 text-sm dark:text-gray-300 text-gray-600">
+                  {project.description}
+                </p>
 
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-400 mb-2">
-                    Key Features:
-                  </h4>
-                  <ul className="list-disc list-inside text-sm text-gray-400 space-y-1">
-                    {project.features.map((feature, idx) => (
-                      <li key={idx}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
+                {project.features && project.features.length > 0 && (
+                  <div className="mt-4">
+                    <h4 className="text-sm font-semibold mb-2 dark:text-gray-200 text-gray-800">
+                      Key Features:
+                    </h4>
+                    <ul className="list-disc list-inside space-y-1.5">
+                      {project.features.map((feature, idx) => (
+                        <li
+                          key={idx}
+                          className="text-sm dark:text-gray-300 text-gray-600 pl-1"
+                        >
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-                <div className="flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-2">
                   {project.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-sm text-blue-400 bg-blue-400/10 rounded-full"
+                      className="px-2.5 py-1 text-xs font-medium rounded-full
+                        dark:bg-indigo-400/10 dark:text-indigo-400 dark:ring-1 dark:ring-indigo-400/30 dark:hover:bg-indigo-400/20
+                        bg-indigo-50 text-indigo-600 hover:bg-indigo-100
+                        transition-all duration-200"
                     >
                       {tech}
                     </span>
