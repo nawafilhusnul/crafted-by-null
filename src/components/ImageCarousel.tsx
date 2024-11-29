@@ -17,30 +17,35 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isLoading, setIsLoading] = useState<boolean[]>(new Array(images.length).fill(true));
+  const [isLoading, setIsLoading] = useState<boolean[]>(
+    new Array(images.length).fill(true)
+  );
 
-  const paginate = useCallback((newDirection: number) => {
-    setDirection(newDirection);
-    let nextIndex = currentIndex + newDirection;
-    if (nextIndex < 0) nextIndex = images.length - 1;
-    if (nextIndex >= images.length) nextIndex = 0;
-    setCurrentIndex(nextIndex);
-  }, [currentIndex, images.length]);
+  const paginate = useCallback(
+    (newDirection: number) => {
+      setDirection(newDirection);
+      let nextIndex = currentIndex + newDirection;
+      if (nextIndex < 0) nextIndex = images.length - 1;
+      if (nextIndex >= images.length) nextIndex = 0;
+      setCurrentIndex(nextIndex);
+    },
+    [currentIndex, images.length]
+  );
 
   // Handle keyboard navigation
   useEffect(() => {
     if (!isHovered) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
+      if (e.key === "ArrowLeft") {
         paginate(-1);
-      } else if (e.key === 'ArrowRight') {
+      } else if (e.key === "ArrowRight") {
         paginate(1);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isHovered, paginate]);
 
   useEffect(() => {
@@ -54,7 +59,10 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     return () => clearInterval(interval);
   }, [images.length, autoPlayInterval, isPaused]);
 
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
     const swipeThreshold = 50;
     if (Math.abs(info.offset.x) > swipeThreshold) {
       if (info.offset.x > 0) {
@@ -67,9 +75,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
 
   const slideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
+      x: direction > 0 ? "100%" : "-100%",
       opacity: 0,
-      scale: 0.95
+      scale: 0.95,
     }),
     center: {
       x: 0,
@@ -77,23 +85,23 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
       scale: 1,
       transition: {
         duration: 0.4,
-        ease: [0.4, 0, 0.2, 1]
-      }
+        ease: [0.4, 0, 0.2, 1],
+      },
     },
     exit: (direction: number) => ({
-      x: direction < 0 ? '100%' : '-100%',
+      x: direction < 0 ? "100%" : "-100%",
       opacity: 0,
       scale: 0.95,
       transition: {
         duration: 0.4,
-        ease: [0.4, 0, 0.2, 1]
-      }
-    })
+        ease: [0.4, 0, 0.2, 1],
+      },
+    }),
   };
 
   return (
-    <div 
-      className="relative w-full h-48 overflow-hidden bg-gray-900/50 backdrop-blur-sm"
+    <div
+      className="relative w-full h-36 sm:h-48 lg:h-64 overflow-hidden bg-gray-900/50 backdrop-blur-sm rounded-lg"
       onMouseEnter={() => {
         setIsPaused(true);
         setIsHovered(true);
@@ -102,12 +110,10 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         setIsPaused(false);
         setIsHovered(false);
       }}
+      role="region"
+      aria-label="Image carousel"
     >
-      <AnimatePresence
-        initial={false}
-        custom={direction}
-        mode="popLayout"
-      >
+      <AnimatePresence initial={false} custom={direction} mode="popLayout">
         <motion.div
           key={currentIndex}
           custom={direction}
@@ -118,81 +124,92 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           className="absolute inset-0"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.7}
+          dragElastic={1}
           onDragEnd={handleDragEnd}
+          role="img"
+          aria-label={`Image ${currentIndex + 1} of ${images.length}`}
         >
           <div className="relative w-full h-full">
-            {isLoading[currentIndex] && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 backdrop-blur-sm">
-                <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-              </div>
-            )}
             <img
               src={images[currentIndex]}
-              alt={`${title} - Image ${currentIndex + 1}`}
-              className="w-full h-full object-cover transition-opacity duration-300"
-              style={{ opacity: isLoading[currentIndex] ? 0 : 1 }}
-              draggable={false}
+              alt={`Project image ${currentIndex + 1}`}
+              className={`w-full h-full object-cover transition-opacity duration-300 ${
+                isLoading[currentIndex] ? "opacity-0" : "opacity-100"
+              }`}
               onLoad={() => {
                 const newLoading = [...isLoading];
                 newLoading[currentIndex] = false;
                 setIsLoading(newLoading);
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
+            {isLoading[currentIndex] && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-900/20">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 border-4 border-white/20 border-t-white/80 rounded-full animate-spin" />
+              </div>
+            )}
           </div>
         </motion.div>
       </AnimatePresence>
-      
+
       {images.length > 1 && (
         <>
-          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-2 pointer-events-none" style={{ zIndex: 50 }}>
+          <div
+            className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-2 sm:px-4 pointer-events-none"
+            style={{ zIndex: 50 }}
+          >
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-full bg-black/20 backdrop-blur-sm text-white hover:bg-white/20 transition-colors pointer-events-auto"
-              onClick={(e) => {
-                e.stopPropagation();
-                paginate(-1);
-              }}
+              onClick={() => paginate(-1)}
+              className="p-1 sm:p-2 rounded-full bg-black/20 backdrop-blur-sm text-white/80 hover:text-white hover:bg-black/40 pointer-events-auto transition-colors"
+              aria-label="Previous image"
             >
-              <FiChevronLeft className="w-6 h-6" />
+              <FiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.button>
-            
+
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-full bg-black/20 backdrop-blur-sm text-white hover:bg-white/20 transition-colors pointer-events-auto"
-              onClick={(e) => {
-                e.stopPropagation();
-                paginate(1);
-              }}
+              onClick={() => paginate(1)}
+              className="p-1 sm:p-2 rounded-full bg-black/20 backdrop-blur-sm text-white/80 hover:text-white hover:bg-black/40 pointer-events-auto transition-colors"
+              aria-label="Next image"
             >
-              <FiChevronRight className="w-6 h-6" />
+              <FiChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.button>
           </div>
 
-          <div className="absolute bottom-2 inset-x-0 flex justify-center gap-1.5" style={{ zIndex: 50 }}>
+          <div
+            className="absolute bottom-2 sm:bottom-3 inset-x-0 flex justify-center gap-1 sm:gap-1.5"
+            style={{ zIndex: 50 }}
+            role="tablist"
+            aria-label="Image navigation"
+          >
             {images.map((_, idx) => (
               <motion.button
                 key={idx}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentIndex
-                    ? "bg-white w-4"
-                    : "bg-white/50 hover:bg-white/75 w-1.5"
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation();
+                onClick={() => {
                   setDirection(idx > currentIndex ? 1 : -1);
                   setCurrentIndex(idx);
                 }}
+                className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full pointer-events-auto transition-colors ${
+                  idx === currentIndex
+                    ? "bg-white"
+                    : "bg-white/40 hover:bg-white/60"
+                }`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={`Go to image ${idx + 1}`}
+                aria-selected={idx === currentIndex}
+                role="tab"
               />
             ))}
           </div>
 
-          <div className="absolute top-2 right-2 text-white/60 text-sm font-medium tracking-wide backdrop-blur-sm bg-black/20 px-2 py-0.5 rounded-full" style={{ zIndex: 50 }}>
+          <div
+            className="absolute top-2 right-2 text-white/60 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-sm bg-black/20 px-1.5 sm:px-2 py-0.5 rounded-full"
+            style={{ zIndex: 50 }}
+            aria-live="polite"
+          >
             {currentIndex + 1} / {images.length}
           </div>
         </>
