@@ -59,10 +59,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     return () => clearInterval(interval);
   }, [images.length, autoPlayInterval, isPaused]);
 
-  const handleDragEnd = (
-    _: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
-  ) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const swipeThreshold = 50;
     if (Math.abs(info.offset.x) > swipeThreshold) {
       if (info.offset.x > 0) {
