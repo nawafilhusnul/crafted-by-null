@@ -23,7 +23,8 @@ const Skills = () => {
               Skills & Technologies
             </h2>
             <p className="text-base sm:text-lg dark:text-gray-300 text-gray-600 max-w-2xl mx-auto">
-              A collection of technologies and skills I've worked with and mastered over the years
+              A collection of technologies and skills I've worked with and
+              mastered over the years
             </p>
           </motion.div>
 
@@ -57,12 +58,14 @@ const Skills = () => {
                       transition={{ duration: 0.3, delay: idx * 0.1 }}
                       className="flex items-center space-x-2 sm:space-x-3 group"
                     >
-                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-indigo-500/30 dark:bg-indigo-400/30 
+                      <div
+                        className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-indigo-500/30 dark:bg-indigo-400/30 
                         group-hover:bg-indigo-500 dark:group-hover:bg-indigo-400 
                         group-hover:ring-4 ring-indigo-500/20 dark:ring-indigo-400/20
-                        transform transition-all duration-300" 
+                        transform transition-all duration-300"
                       />
-                      <span className="text-sm sm:text-base text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 
+                      <span
+                        className="text-sm sm:text-base text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 
                         dark:group-hover:text-indigo-400 transition-colors duration-300"
                       >
                         {skill}
