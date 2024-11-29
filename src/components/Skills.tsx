@@ -1,133 +1,56 @@
 import { motion } from "framer-motion";
-import {
-  FaAws,
-  FaServer,
-  FaDocker,
-  FaPython,
-  FaCode,
-  FaBrain,
-  FaUsers,
-  FaCogs,
-  FaVial,
-} from "react-icons/fa";
-import {
-  SiPostgresql,
-  SiRedis,
-  SiGo,
-  SiMysql,
-  SiGooglecloud,
-  SiFirebase,
-  SiAmazondynamodb,
-  SiNodedotjs,
-} from "react-icons/si";
-import { FC } from "react";
-import { SkillCategory } from "../types";
+import { skills } from "../data";
 
-const Skills: FC = () => {
-  const skills: SkillCategory[] = [
-    {
-      category: "Programming Languages & Backend",
-      items: [
-        { name: "Go", icon: SiGo, level: 95 },
-        { name: "Node.js", icon: SiNodedotjs, level: 85 },
-        { name: "Python", icon: FaPython, level: 70 },
-      ],
-    },
-    {
-      category: "Databases",
-      items: [
-        { name: "MySQL", icon: SiMysql, level: 95 },
-        { name: "PostgreSQL", icon: SiPostgresql, level: 85 },
-        { name: "DynamoDB", icon: SiAmazondynamodb, level: 85 },
-        { name: "Firestore", icon: SiFirebase, level: 85 },
-        { name: "Redis", icon: SiRedis, level: 80 },
-      ],
-    },
-    {
-      category: "Cloud & Infrastructure",
-      items: [
-        { name: "Docker", icon: FaDocker, level: 80 },
-        { name: "GCP", icon: SiGooglecloud, level: 75 },
-        { name: "AWS", icon: FaAws, level: 70 },
-      ],
-    },
-    {
-      category: "Others",
-      items: [
-        { name: "Team Work", icon: FaUsers, level: 95 },
-        { name: "Agile Development", icon: FaCogs, level: 95 },
-        { name: "Unit Testing", icon: FaVial, level: 90 },
-        { name: "Clean Architecture", icon: FaServer, level: 80 },
-        { name: "Data Structure and Algorithm", icon: FaBrain, level: 80 },
-        { name: "System Design", icon: FaCode, level: 75 },
-      ],
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
+const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          <h2 className="section-title text-center">Skills & Technologies</h2>
+    <section id="skills" className="py-16 sm:py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="container mx-auto px-4"
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12 dark:text-white text-gray-900">
+            Skills & Technologies
+          </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 mt-12">
-            {skills.map((category, idx) => (
-              <motion.div key={idx} variants={itemVariants} className="card">
-                <h3 className="text-xl font-semibold text-white mb-6">
-                  {category.category}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {Object.entries(skills).map(([category, items], categoryIdx) => (
+              <motion.div
+                key={category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: categoryIdx * 0.1 }}
+                className="bg-white dark:bg-gray-800/50 rounded-xl p-6 shadow-sm dark:shadow-none ring-1 ring-gray-200 dark:ring-gray-800"
+              >
+                <h3 className="text-lg font-semibold mb-4 text-indigo-600 dark:text-indigo-400">
+                  {category}
                 </h3>
-                <div className="space-y-6">
-                  {category.items.map((skill, skillIdx) => (
-                    <div key={skillIdx} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <skill.icon className="w-5 h-5 text-blue-500" />
-                          <span className="text-gray-300">{skill.name}</span>
-                        </div>
-                        <span className="text-sm text-gray-400">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <motion.div
-                          className="bg-blue-500 h-2 rounded-full"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, ease: "easeOut" }}
-                        />
-                      </div>
-                    </div>
+                <ul className="space-y-3">
+                  {items.map((skill, idx) => (
+                    <motion.li
+                      key={idx}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: idx * 0.1 }}
+                      className="flex items-center space-x-3 group"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-indigo-500/30 dark:bg-indigo-400/30 group-hover:bg-indigo-500 dark:group-hover:bg-indigo-400 transition-colors duration-200" />
+                      <span className="text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
+                        {skill}
+                      </span>
+                    </motion.li>
                   ))}
-                </div>
+                </ul>
               </motion.div>
             ))}
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 };

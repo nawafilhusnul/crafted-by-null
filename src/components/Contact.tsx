@@ -36,117 +36,104 @@ const Contact: FC = () => {
     // Add your form submission logic here
   };
 
+  const contactLinks = [
+    {
+      name: "GitHub",
+      icon: FaGithub,
+      url: "https://github.com/nawafilhusnul",
+      color: "hover:text-gray-900 dark:hover:text-white",
+    },
+    {
+      name: "LinkedIn",
+      icon: FaLinkedin,
+      url: "https://www.linkedin.com/in/husnul-nawafil",
+      color: "hover:text-blue-600 dark:hover:text-blue-400",
+    },
+    {
+      name: "Email",
+      icon: FaEnvelope,
+      url: "mailto:husnulnawafil@gmail.com",
+      color: "hover:text-red-600 dark:hover:text-red-400",
+    },
+  ];
+
   return (
-    <section id="contact" className="py-20 bg-gray-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
-        >
-          <h2 className="section-title">Get in Touch</h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
-            {`I'm always open to discussing new projects, creative ideas, or
-            opportunities to be part of your visions.`}
-          </p>
-        </motion.div>
+    <section id="contact" className="py-16 sm:py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="container mx-auto px-4"
+      >
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-bold mb-4 dark:text-white text-gray-900"
+            >
+              Get in Touch
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-lg mb-8 dark:text-gray-300 text-gray-600"
+            >
+              Let's connect and explore opportunities together!
+            </motion.p>
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white dark:bg-gray-800/50 rounded-xl p-8 shadow-sm dark:shadow-none ring-1 ring-gray-200 dark:ring-gray-800"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-300"
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {contactLinks.map((link, idx) => (
+                <motion.a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: idx * 0.1 }}
+                  className={`flex items-center justify-center space-x-3 p-4 rounded-lg
+                    bg-gray-50 dark:bg-gray-800 
+                    group hover:bg-gray-100 dark:hover:bg-gray-700/50
+                    transition-all duration-200 
+                    ring-1 ring-gray-200 dark:ring-gray-700`}
                 >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
+                  <link.icon className={`w-6 h-6 text-gray-600 dark:text-gray-400 ${link.color} transition-colors duration-200`} />
+                  <span className={`text-gray-800 dark:text-gray-300 font-medium ${link.color} transition-colors duration-200`}>
+                    {link.name}
+                  </span>
+                </motion.a>
+              ))}
+            </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-300"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-300"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
-              </div>
-
-              <button type="submit" className="w-full btn-primary">
-                Send Message
-              </button>
-            </form>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-6"
-          >
-            <div className="card">
-              <h3 className="text-xl font-semibold text-white mb-6">
-                Connect With Me
-              </h3>
-              <div className="space-y-4">
-                {socialLinks.map((link, idx) => (
-                  <motion.a
-                    key={idx}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors duration-200"
-                    whileHover={{ x: 10 }}
-                  >
-                    <link.icon className="w-6 h-6 text-blue-500" />
-                    <span>{link.label}</span>
-                  </motion.a>
-                ))}
-              </div>
+            <div className="mt-8 text-center">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="text-sm text-gray-600 dark:text-gray-400"
+              >
+                I'm always open to discussing new projects, opportunities, or partnerships.
+              </motion.p>
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
