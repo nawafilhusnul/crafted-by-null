@@ -39,32 +39,35 @@ const About: FC = () => {
       items: [
         {
           title: "Backend Engineer",
-          place: "TainoSystems Inc.",
-          date: "2023 - Present",
+          place: "FIT HUB",
+          date: "July 2022 - Present",
           achievements: [
+            "Developed gym management system backend",
+            "Implemented personal trainers scheduling and booking features",
+            "Optimized API performance and security",
+            "Developed gym workout tutorial features",
+          ],
+        },
+        {
+          title: "Backend Engineer",
+          place: "TainoSystems Inc.",
+          date: " Jan 2024 - Dec 2024",
+          achievements: [
+            "Built money exchange platform backend",
             "Developed and maintained high-performance APIs",
-            "Implemented microservices architecture",
             "Optimized database queries and performance",
+            "Collaborated with cross-country teams",
+            "Set up the monolithic deployment on Linux",
           ],
         },
         {
           title: "Backend Engineer",
           place: "HumaHire",
-          date: "2022 - 2023",
+          date: "May 2023 - Aug 2023",
           achievements: [
             "Built recruitment platform backend services",
             "Integrated third-party APIs and services",
             "Implemented authentication and notification systems",
-          ],
-        },
-        {
-          title: "Backend Engineer",
-          place: "FIT HUB",
-          date: "2022",
-          achievements: [
-            "Developed gym management system backend",
-            "Implemented scheduling and booking features",
-            "Optimized API performance and security",
           ],
         },
       ],
